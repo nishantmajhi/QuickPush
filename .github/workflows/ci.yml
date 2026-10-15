@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      # The suite is written for Windows PowerShell 5.1. It also compiles and
+      # runs tests/cmdline_test.c when it finds gcc, which the runner has.
+      - run: tests\run.ps1
+        shell: powershell

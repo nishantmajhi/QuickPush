@@ -1,0 +1,16 @@
+# Build output. The DLL was tracked until 2026-09-17; a shell extension loads
+# into explorer.exe, and a prebuilt binary in the repository gives anyone who
+# clones it something they cannot check against the source. Build it with
+# install.bat, or publish it as a release asset.
+shell-extension/quickpush.dll
+shell-extension/*.o
+shell-extension/*.obj
+shell-extension/*.res
+
+# resource.rc names the icon with no path, so install.bat copies it next to the
+# .rc file to compile and deletes it afterwards. The one true copy is at the
+# repository root.
+shell-extension/quickpush.ico
+
+# tests/run.ps1 compiles and runs this, then removes it.
+tests/cmdline_test.exe
